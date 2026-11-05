@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de Mejora para el relanzamiento de un producto</title>
+    
+    <!-- Fuentes de Google para que las letras se vean modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Enlace correcto a tus estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Encabezado y Barra de Navegación -->
+    <header class="header-tienda">
+        <div class="nav-contenedor">
+            <a href="index.html" class="logo">LUMEN</a>
+            
+            <!-- Icono de Menú Hamburguesa para móviles -->
+            <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <!-- Enlaces de navegación -->
+            <nav class="nav-enlaces" id="nav-menu">
+                <a href="index.html" class="activo">Inicio</a>
+                <a href="productos.html">Novedades</a>
+                <a href="pedido.html">Hacer Pedido</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección Principal de Categorías -->
+    <section class="seccion-categorias">
+        <div class="categorias-header">
+            <h2>Explora por Categorías</h2>
+            <p>Encuentra las mejores prendas seleccionadas especialmente para ti</p>
+        </div>
+
+        <div class="contenedor-categorias">
+            <!-- Tarjeta 1: Debe ir a chaquetas.html -->
+            <a href="chaquetas.html" class="tarjeta-categoria">
+                <div class="capa-oscura"></div>
+                <img src="https://freeropa.com/cdn/shop/files/PHOTOSHOP_PARA_SHOPIFY_0066_IMG_0991.jpg?v=1784161784&width=640" alt="Casacas">
+                <h3>Casacas</h3>
+            </a>
+
+            <!-- Tarjeta 2: Debe ir a poleras.html -->
+            <a href="poleras.html" class="tarjeta-categoria">
+                <div class="capa-oscura"></div>
+                <img src="https://freeropa.com/cdn/shop/files/PHOTOSHOP_PARA_SHOPIFY_0130_IMG_0903.jpg?v=1784162147&width=3840" alt="Polos">
+                <h3>Polos</h3>
+            </a>
+
+            <!-- Tarjeta 3: Debe ir a pantalon.html -->
+            <a href="pantalon.html" class="tarjeta-categoria">
+                <div class="capa-oscura"></div>
+                <img src="https://freeropa.com/cdn/shop/files/Sin_titulo-1_0002_IMG_0157.jpg?v=1781743016&width=3840" alt="Pantalon">
+                <h3>Pantalones</h3>
+            </a>
+        </div>
+    </section> <!-- ¡CORREGIDO! Cierre correcto de la sección antes del footer -->
+
+    <!-- Vinculación del JavaScript para que funcione el menú de celular -->
+    <script src="script.js"></script>
+
+    <!-- Pie de Página (Footer) - Comunidad LUMEN -->
+    <footer class="footer-comunidad">
+        <div class="footer-superior">
+            <span class="subtitulo-comunidad">COMUNIDAD LUMEN</span>
+            <p class="frase-comunidad">No es solo ropa.</p>
+            <p class="frase-comunidad">Es identidad, proceso y decisión.</p>
+            <p class="frase-comunidad">LUMEN una comunidad de personas</p>
+            <p class="frase-comunidad">que decidieron construir su propio camino.</p>
+        </div>
+
+        <hr class="linea-separadora">
+
+        <div class="footer-inferior">
+            <h3 class="titulo-unete">ÚNETE A LA COMUNIDAD LUMEN</h3>
+            
+            <!-- Formulario de Suscripción -->
+            <form class="formulario-suscripcion">
+                <input type="email" placeholder="Dirección de correo electrónico" required>
+                <button type="submit" aria-label="Enviar">→</button>
+            </form>
+        </div>
+
+        <hr class="linea-separadora">
+
+        <div class="footer-creditos">
+            <p>© 2026 LUMEN</p>
+            <a href="#">Términos y políticas</a>
+        </div>
+    </footer>
+
+</body>
+</html>

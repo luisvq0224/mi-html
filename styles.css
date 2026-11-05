@@ -1,0 +1,325 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+:root {
+    --color-primario: #1a252f;
+    --color-acento: #e74c3c;
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fuente-principal);
+    background-color: #fcfcfc;
+}
+
+/* --- HEADER Y NAVBAR --- */
+.header-tienda {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--color-acento);
+}
+
+.nav-enlaces {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-enlaces a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-enlaces a:hover, .nav-enlaces a.activo {
+    color: var(--color-primario);
+    font-weight: 600;
+}
+
+/* Botón del menú móvil (Oculto en escritorio) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    cursor: pointer;
+}
+
+/* --- SECCIÓN CATEGORÍAS --- */
+.seccion-categorias {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.categorias-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.categorias-header h2 {
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin: 0 0 10px 0;
+}
+
+.categorias-header p {
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.contenedor-categorias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Tarjetas con Efecto Visual Moderno */
+.tarjeta-categoria {
+    position: relative;
+    height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+
+.tarjeta-categoria:hover {
+    transform: scale(1.03); /* Zoom elegante al pasar el mouse */
+}
+
+.tarjeta-categoria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.tarjeta-categoria:hover .capa-oscura {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+.tarjeta-categoria h3 {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+/* --- ESTILOS DEL FOOTER (COMUNIDAD FREE) --- */
+.footer-comunidad {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 60px 20px 20px 20px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.footer-superior {
+    margin-bottom: 40px;
+}
+
+.subtitulo-comunidad {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #a0a0a0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.frase-comunidad {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.linea-separadora {
+    border: 0;
+    border-top: 1px solid #2c2c2c;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.titulo-unete {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: left;
+}
+
+/* Contenedor del campo de correo electrónico */
+.formulario-suscripcion {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+.formulario-suscripcion input[type="email"] {
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+    padding: 14px 50px 14px 20px;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.formulario-suscripcion input[type="email"]:focus {
+    border-color: #555555;
+}
+
+.formulario-suscripcion input[type="email"]::placeholder {
+    color: #777777;
+}
+
+/* Flecha de envío interna */
+.formulario-suscripcion button {
+    position: absolute;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.formulario-suscripcion button:hover {
+    transform: translateX(3px); /* Pequeño efecto dinámico al pasar el mouse */
+}
+
+/* Créditos finales de la empresa */
+.footer-creditos {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+    font-size: 0.75rem;
+    color: #555555;
+}
+
+.footer-creditos a {
+    color: #555555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-creditos a:hover {
+    color: #ffffff;
+}
+
+/* --- MEDIA QUERIES (Responsivo en Celulares) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Muestra el icono de hamburguesa */
+    }
+
+    /* Oculta y posiciona el menú desplegable */
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* Clase activa que añadirá JavaScript */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+
+    .contenedor-categorias {
+        grid-template-columns: 1fr; /* Columna única en móviles */
+        gap: 20px;
+    }
+    
+    .tarjeta-categoria {
+        height: 250px;
+    }
+
+    /* Ajustes del Footer para pantallas táctiles */
+    .footer-inferior {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .titulo-unete {
+        text-align: center;
+    }
+
+    .footer-creditos {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
