@@ -140,16 +140,130 @@
             background-color: #2c3e50;
         }
 
-        /* --- RESPONSIVO PARA CELULARES --- */
-        @media (max-width: 576px) {
-            .contenedor-productos {
-                grid-template-columns: 1fr; /* Una sola columna para que no se corte de lado */
-                gap: 20px;
-            }
-            .tarjeta-producto img {
-                height: 300px;
-            }
-        }
+   /* ========================================================
+   1. ESTILOS GENERALES (Para computadoras - FUERA del @media)
+   ======================================================== */
+
+/* Ocultar por completo en computadoras y pantallas grandes */
+.menu-toggle {
+    display: none !important;
+}
+
+
+
+/* ========================================================
+   2. ESTILOS PARA CELULARES (Dentro del @media)
+   ======================================================== */
+@media (max-width: 768px) {
+
+    /* Aquí ADENTRO sí encendemos el botón para que se vea en el móvil */
+    .menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        color: #1a252f;
+        cursor: pointer;
+        padding: 5px;
+        outline: none;
+    }
+
+    /* Ampliar el tamaño y espaciado de la caja del menú desplegable */
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 25px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        gap: 20px;
+        text-align: center;
+        z-index: 999;
+    }
+
+    /* Agrandar las letras de los enlaces para el celular */
+    .nav-enlaces a {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1a252f;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-decoration: none;
+    }
+
+    /* Clase que activa el JavaScript para mostrar el menú */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+}
+
+
+
+    /* 2. Ampliar el tamaño y espaciado de la caja del menú desplegable */
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Alineación perfecta debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 25px 0; /* Más espacio interno arriba y abajo */
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05); /* Sombra suave para darle profundidad */
+        gap: 20px; /* Separación generosa entre cada enlace */
+        text-align: center;
+        z-index: 999;
+    }
+
+    /* 3. Agrandar las letras de los enlaces para que sean fáciles de presionar */
+    .nav-enlaces a {
+        font-size: 1.1rem; /* ¡CAMBIO CLAVE! Letras más grandes y visibles */
+        font-weight: 500;
+        color: #1a252f;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    /* Efecto sutil al tocar un enlace en el celular */
+    .nav-enlaces a:active {
+        background-color: #f8f9fa; 
+    }
+
+    /* Clase que activa el JavaScript */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+
+
+    /* Oculta la lista de enlaces horizontales para que caiga en vertical */
+   
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* Muestra el menú cuando el JavaScript añade la clase */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+
+
 
                    /* --- ESTILOS DEL FOOTER NEGRO --- */
         .footer-comunidad {
@@ -279,12 +393,19 @@
 <body>
 
     <!-- Navegación -->
-    <header class="header-tienda">
+     <header class="header-tienda">
         <div class="nav-contenedor">
             <a href="index.html" class="logo">LUMEN</a>
-            <nav class="nav-enlaces">
+            
+            <!-- Icono de Menú Hamburguesa para móviles -->
+            <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <!-- Enlaces de navegación con ID para el script -->
+            <nav class="nav-enlaces" id="nav-menu">
                 <a href="index.html">Inicio</a>
-                <a href="productos.html">Ver Todo</a>
+                <a href="productos.html" class="activo">Novedades</a>
                 <a href="pedido.html">Hacer Pedido</a>
             </nav>
         </div>
@@ -349,7 +470,7 @@
             <article class="tarjeta-producto">
                 <img src="https://freeropa.com/cdn/shop/files/IMG_0363.png?v=1782954214&width=3840" alt="Baggy Jean Hueso">
                 <div class="info-producto">
-                    <h3>Baggy Jean Huesp</h3>
+                    <h3>Baggy Jean Hueso</h3>
                     <p class="precio">S/ 129.00</p>
                     <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
                 </div>
@@ -390,6 +511,29 @@
         </div>
     </footer>
 
+        <!-- Código JavaScript integrado para asegurar el funcionamiento del menú móvil -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuBtn = document.getElementById("menu-btn");
+            const navMenu = document.getElementById("nav-menu");
+
+            // Verificación de seguridad para evitar errores en la consola
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener("click", () => {
+                    // Alterna la clase para mostrar/ocultar el menú
+                    navMenu.classList.toggle("mostrar");
+                    
+                    // Cambia el icono visual de forma dinámica
+                    if (navMenu.classList.contains("mostrar")) {
+                        menuBtn.innerHTML = "✕"; // Icono de cerrar
+                    } else {
+                        menuBtn.innerHTML = "☰"; // Icono de hamburguesa
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
+

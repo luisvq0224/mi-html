@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalon</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primario: #1a252f;
+            --color-acento: #e74c3c;
+            --fuente-principal: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--fuente-principal);
+            background-color: #fcfcfc;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        .header-tienda {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--color-acento);
+        }
+
+        .nav-enlaces {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-enlaces a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-enlaces a:hover {
+            color: var(--color-primario);
+        }
+
+        /* --- CATÁLOGO DE PRODUCTOS RESPONSIVO --- */
+        .catalogo-seccion {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-seccion {
+            color: var(--color-primario);
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contenedor-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .tarjeta-producto {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-producto img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info-producto {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .info-producto h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: var(--color-primario);
+        }
+
+        .precio {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-acento);
+            margin: 0 0 15px 0;
+        }
+
+        .btn-comprar {
+            background-color: var(--color-primario);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        .btn-comprar:hover {
+            background-color: #2c3e50;
+        }
+
+   /* ========================================================
+   1. ESTILOS GENERALES (Para computadoras - FUERA del @media)
+   ======================================================== */
+
+/* Ocultar por completo en computadoras y pantallas grandes */
+.menu-toggle {
+    display: none !important;
+}
+
+
+
+/* ========================================================
+   2. ESTILOS PARA CELULARES (Dentro del @media)
+   ======================================================== */
+@media (max-width: 768px) {
+
+    /* Aquí ADENTRO sí encendemos el botón para que se vea en el móvil */
+    .menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        color: #1a252f;
+        cursor: pointer;
+        padding: 5px;
+        outline: none;
+    }
+
+    /* Ampliar el tamaño y espaciado de la caja del menú desplegable */
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 25px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        gap: 20px;
+        text-align: center;
+        z-index: 999;
+    }
+
+    /* Agrandar las letras de los enlaces para el celular */
+    .nav-enlaces a {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1a252f;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-decoration: none;
+    }
+
+    /* Clase que activa el JavaScript para mostrar el menú */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+}
+
+
+
+    /* 2. Ampliar el tamaño y espaciado de la caja del menú desplegable */
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Alineación perfecta debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 25px 0; /* Más espacio interno arriba y abajo */
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05); /* Sombra suave para darle profundidad */
+        gap: 20px; /* Separación generosa entre cada enlace */
+        text-align: center;
+        z-index: 999;
+    }
+
+    /* 3. Agrandar las letras de los enlaces para que sean fáciles de presionar */
+    .nav-enlaces a {
+        font-size: 1.1rem; /* ¡CAMBIO CLAVE! Letras más grandes y visibles */
+        font-weight: 500;
+        color: #1a252f;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    /* Efecto sutil al tocar un enlace en el celular */
+    .nav-enlaces a:active {
+        background-color: #f8f9fa; 
+    }
+
+    /* Clase que activa el JavaScript */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+
+
+    /* Oculta la lista de enlaces horizontales para que caiga en vertical */
+   
+    .nav-enlaces {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 20px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* Muestra el menú cuando el JavaScript añade la clase */
+    .nav-enlaces.mostrar {
+        display: flex;
+    }
+
+
+
+                   /* --- ESTILOS DEL FOOTER NEGRO --- */
+        .footer-comunidad {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 60px 20px 20px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-superior {
+            margin-bottom: 40px;
+        }
+
+        .subtitulo-comunidad {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #a0a0a0;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .frase-comunidad {
+            font-size: 1.1rem;
+            margin: 5px 0;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .linea-separadora {
+            border: 0;
+            border-top: 1px solid #2c2c2c;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-inferior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 10px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .titulo-unete {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            text-align: left;
+        }
+
+        .formulario-suscripcion {
+            position: relative;
+            display: flex;
+            align-items: center;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .formulario-suscripcion input[type="email"] {
+            width: 100%;
+            background-color: #1a1a1a;
+            border: 1px solid #333333;
+            padding: 14px 50px 14px 20px;
+            border-radius: 25px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .formulario-suscripcion input[type="email"]::placeholder {
+            color: #777777;
+        }
+
+        .formulario-suscripcion button {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .footer-creditos {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 20px auto 0 auto;
+            font-size: 0.75rem;
+            color: #555555;
+        }
+
+        .footer-creditos a {
+            color: #555555;
+            text-decoration: none;
+        }
+
+        /* Adaptabilidad móvil */
+        @media (max-width: 768px) {
+            .footer-inferior {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .titulo-unete {
+                text-align: center;
+            }
+
+            .footer-creditos {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+     <header class="header-tienda">
+        <div class="nav-contenedor">
+            <a href="index.html" class="logo">LUMEN</a>
+            
+            <!-- Icono de Menú Hamburguesa para móviles -->
+            <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú">
+                ☰
+            </button>
+
+            <!-- Enlaces de navegación con ID para el script -->
+            <nav class="nav-enlaces" id="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html" class="activo">Novedades</a>
+                <a href="pedido.html">Hacer Pedido</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido de Pantalones -->
+    <main class="catalogo-seccion">
+        <h2 class="titulo-seccion">Colección de Pantalones</h2>
+        
+        <div class="contenedor-productos">
+            <!-- Producto 1 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/IMG_0369.png?v=1782954638&width=3840" alt="Baggy Jean Cocoa">
+                <div class="info-producto">
+                    <h3>Baggy Jean Cocoa</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+            <!-- Producto 2 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/IMG_0356.png?v=1782955043&width=3840" alt="baggy jean Indigo">
+                <div class="info-producto">
+                    <h3>Baggy Jean Indigo</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+             <!-- Producto 3 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/Sin_titulo-1_0008_IMG_0147.jpg?v=1781743274&width=3840" alt="Baggy Jean Oxido">
+                <div class="info-producto">
+                    <h3>Baggy Jean Oxido</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+             <!-- Producto 3 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/Sin_titulo-1_0002_IMG_0157.jpg?v=1781743016&width=3840" alt="Baggy Jean Cenizo">
+                <div class="info-producto">
+                    <h3>Baggy Jean Cenizo</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+             <!-- Producto 2 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/Sintitulo-1_0005_IMG_0153.jpg?v=1781742679&width=3840" alt="Baggy Jean Maiz">
+                <div class="info-producto">
+                    <h3>Baggy jean Maiz</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+             <!-- Producto 2 -->
+            <article class="tarjeta-producto">
+                <img src="https://freeropa.com/cdn/shop/files/IMG_0363.png?v=1782954214&width=3840" alt="Baggy Jean Hueso">
+                <div class="info-producto">
+                    <h3>Baggy Jean Hueso</h3>
+                    <p class="precio">S/ 129.00</p>
+                    <a href="pedido.html" class="btn-comprar">Comprar Ahora</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+        </div>
+    </footer>
+
+        <!-- Pie de Página (Footer) - Comunidad LUMEN -->
+    <footer class="footer-comunidad">
+        <div class="footer-superior">
+            <span class="subtitulo-comunidad">COMUNIDAD LUMEN</span>
+            <p class="frase-comunidad">No es solo ropa.</p>
+            <p class="frase-comunidad">Es identidad, proceso y decisión.</p>
+            <p class="frase-comunidad">LUMEN una comunidad de personas</p>
+            <p class="frase-comunidad">que decidieron construir su propio camino.</p>
+        </div>
+
+        <hr class="linea-separadora">
+
+        <div class="footer-inferior">
+            <h3 class="titulo-unete">ÚNETE A LA COMUNIDAD LUMEN</h3>
+            
+            <!-- Formulario de Suscripción -->
+            <form class="formulario-suscripcion">
+                <input type="email" placeholder="Dirección de correo electrónico" required>
+                <button type="submit" aria-label="Enviar">→</button>
+            </form>
+        </div>
+
+        <hr class="linea-separadora">
+
+        <div class="footer-creditos">
+            <p>© 2026 LUMEN</p>
+            <a href="#">Términos y políticas</a>
+        </div>
+    </footer>
+
+        <!-- Código JavaScript integrado para asegurar el funcionamiento del menú móvil -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuBtn = document.getElementById("menu-btn");
+            const navMenu = document.getElementById("nav-menu");
+
+            // Verificación de seguridad para evitar errores en la consola
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener("click", () => {
+                    // Alterna la clase para mostrar/ocultar el menú
+                    navMenu.classList.toggle("mostrar");
+                    
+                    // Cambia el icono visual de forma dinámica
+                    if (navMenu.classList.contains("mostrar")) {
+                        menuBtn.innerHTML = "✕"; // Icono de cerrar
+                    } else {
+                        menuBtn.innerHTML = "☰"; // Icono de hamburguesa
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+
